@@ -10,6 +10,7 @@ Card = namedtuple("Card", ["name", "act_number", "floor_number", "ascension", "v
 if __name__ == "__main__":
     all_data = {}
 
+    #load all run files from the data folder
     for filename in os.listdir(run_folder):
         if filename.endswith(".run"):
             with open(os.path.join(run_folder, filename), "r") as f:
@@ -17,9 +18,11 @@ if __name__ == "__main__":
                 if data["was_abandoned"] == False:
                     all_data[filename] = data
 
+    #condense all run data into a single JSON file
     df = pd.DataFrame(all_data)
     df.to_json("all_data.json", orient="columns", indent=4)
 
+    #create a summary of the run data and extract card information
     summary_data = {}
     summary_data = {
         "num_entries": len(all_data),
