@@ -58,6 +58,7 @@ if __name__ == "__main__":
     print(f"{len(card_data)} card entries recorded.")
     df2 = pd.DataFrame(card_data)
     df2.to_json("card_data.json", orient="records", indent=4)
+    df2.to_csv("card_data.csv", index=False)
     print("Done!")
 
 
